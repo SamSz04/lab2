@@ -11,6 +11,7 @@ Editor::Editor()
 Editor::~Editor()
 {
     // TODO: Implement destructor
+    //相当于清空链表！！
 }
 
 void Editor::run()
@@ -19,7 +20,7 @@ void Editor::run()
     while (true)
     {
         cout << "cmd> ";
-        cout.flush();
+        cout.flush();           //刷新缓冲区
         getline(cin, cmd);
         if (cmd == "Q")
             break;
@@ -47,14 +48,16 @@ void Editor::cmdInsert()
     while (true)
     {
         string text;
-        getline(cin, text);
+        getline(cin, text);     //getline(cin,str)可以接受空行
         if (text == ".")
             break;
-        if (firstLine) {
+        if (firstLine){            //如果有首行的话，就正常的调用insert函数（插入在前面）
             buffer->insertLine(text);
             firstLine = false;
-        }  else {
-            buffer->appendLine(text);
+        }
+        else {
+            buffer->appendLine(text);       //如果没有，就把输入的第一行当作“首行”
+            // 有了“首行”之后，接下来输入的就接在该“首行”后面，因此调用append函数
         }
     }
 }
@@ -79,7 +82,7 @@ void Editor::cmdWrite(const string &filename)
     buffer->writeToFile(filename);
 }
 
-void Editor::dispatchCmd(const string &cmd)
+void Editor::dispatchCmd(const string &cmd)         //用于区分指令
 {
     if (cmd == "a") {
         cmdAppend();
@@ -98,19 +101,26 @@ void Editor::dispatchCmd(const string &cmd)
     char comma, type = ' ';
     stringstream ss(cmd);
     ss >> start;
-    if (ss.eof()) {
+    if (ss.eof()){          //说明指令是 cmd>3 这种的，因此调用cmdNull函数
         cmdNull(start);
         return;
     }
     ss >> comma >> end >> type;
+
     if (ss.good()) {
-        if (type == 'n') {
+        if (type == 'n') {          //说明指令是 cmd>1，4n 这种的，因此调用cmdNull函数
             cmdNumber(start, end);
             return;
-        } else if (type == 'd') {
+        }
+        else if (type == 'd') {   //说明指令是 cmd>1，4d 这种的，因此调用cmdDelete函数
             cmdDelete(start, end);
             return;
         }
     }
-    throw "Bad/Unknown command";
+    else if (ss.fail()) {                           //说明指令是 1,$n
+        cmdNumber(1,totalLineNum);
+        return;
+    }
+    //还要考虑buffer为空的异常处理
+    else    throw "Bad/Unknown command";
 }

@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/Users/97493/Desktop/lab2/cmake-build-debug"
+			"value" : "c:/Users/97493/Desktop/SEP/lab2/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -575,7 +575,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/97493/Desktop/lab2/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "C:/Users/97493/Desktop/SEP/lab2/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -647,7 +647,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Users/97493/Desktop/lab2"
+			"value" : "C:/Users/97493/Desktop/SEP/lab2"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1275,7 +1275,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/97493/Desktop/lab2/cmake-build-debug"
+			"value" : "C:/Users/97493/Desktop/SEP/lab2/cmake-build-debug"
 		},
 		{
 			"name" : "lab2_IS_TOP_LEVEL",
@@ -1299,7 +1299,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/97493/Desktop/lab2"
+			"value" : "C:/Users/97493/Desktop/SEP/lab2"
 		}
 	],
 	"kind" : "cache",
