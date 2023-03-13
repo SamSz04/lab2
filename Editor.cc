@@ -117,7 +117,7 @@ void Editor::dispatchCmd(const string &cmd)         //用于区分指令
         }
     }
     else if (ss.fail()) {                           //说明指令是 1,$n
-        cmdNumber(1,totalLineNum);
+        cmdNumber(1,buffer->totalLineNum);
         return;
     }
     //还要考虑buffer为空的异常处理!!

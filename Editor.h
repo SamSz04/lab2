@@ -3,7 +3,6 @@
 
 class Editor {
 private:
-    int currentLine;
     Buffer *buffer;           //指针！！
     void dispatchCmd(const string &cmd);
     void cmdAppend();

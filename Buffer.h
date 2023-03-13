@@ -4,7 +4,7 @@
 
 using std::string;
 
-static int totalLineNum = 0;        //用来记录总行数（注意：非const类型的静态全局变量要拿到类外定义！！）
+       //用来记录总行数（注意：非const类型的静态全局变量要拿到类外定义！！）
 
 class Buffer {
 private:
@@ -17,6 +17,7 @@ private:
     };
     Listnode* head;       //链表的头结点
 public:
+    int totalLineNum = 0;
     Buffer();
     ~Buffer();
 

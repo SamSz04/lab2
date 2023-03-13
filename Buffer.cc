@@ -96,6 +96,8 @@ void Buffer::insertLine(const string &text){        //注意：insert的text要�
     i->content = text;
     i->lineNum = p->lineNum + 1;
     currentLineNum = i->lineNum;
+    ++totalLineNum;
+    //std::cout << totalLineNum << std::endl;
     for(Listnode* tmp=i->next;tmp!= nullptr;tmp=tmp->next)
     {
         ++tmp->lineNum;
@@ -107,11 +109,13 @@ void Buffer::appendLine(const string &text){        //注意：append的text要�
     //如果buffer里什么都没有的话
     if (currentLineNum == 0){
         Listnode *first = new Listnode;
+        head->next = first;
         first->lineNum = 1;
         first->content = text;
         first->next = nullptr;
         ++currentLineNum;
         ++totalLineNum;
+        //std::cout << totalLineNum << std::endl;
     }
     else{
         for(p=head->next;p!=nullptr;p=p->next) {
@@ -123,7 +127,9 @@ void Buffer::appendLine(const string &text){        //注意：append的text要�
         p->next = a;
         a->content = text;
         a->lineNum = p->lineNum + 1;
+        ++totalLineNum;
         currentLineNum = a->lineNum;
+        //std::cout << totalLineNum << std::endl;
         //修改行号，插入的行的后面所有行行号都要加1
         for(Listnode* tmp=a->next;tmp!= nullptr;tmp=tmp->next)
         {
