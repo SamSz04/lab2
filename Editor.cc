@@ -24,21 +24,20 @@ void Editor::run()
         getline(cin, cmd);
         if (cmd == "Q")
             break;
-        try {
-            dispatchCmd(cmd);
-        } catch (const char *e) {
-            cout << "? " << e << endl;
-        } catch (const out_of_range &oor) {
-            cout << "? " << oor.what() << endl;
-        } catch (const range_error &re) {
-            cout << "? " << re.what() << endl;
-        }
+        dispatchCmd(cmd);
     }
 }
 void Editor::cmdAppend()
 {
     cout << "It's input mode now. Quit with a line with a single dot(.)" << endl;
-    // TODO: finish cmdAppend.
+    while (true)
+    {
+        string text;
+        getline(cin, text);     //getline(cin,str)可以接受空行
+        if (text == ".")
+            break;
+        buffer->appendLine(text);
+    }
 }
 
 void Editor::cmdInsert()
@@ -69,7 +68,7 @@ void Editor::cmdDelete(int start, int end)
 
 void Editor::cmdNull(int line)
 {
-    cout << buffer->moveToLine(line) << endl;
+    buffer->moveToLine(line);
 }
 
 void Editor::cmdNumber(int start, int end)
@@ -121,6 +120,6 @@ void Editor::dispatchCmd(const string &cmd)         //用于区分指令
         cmdNumber(1,totalLineNum);
         return;
     }
-    //还要考虑buffer为空的异常处理
-    else    throw "Bad/Unknown command";
+    //还要考虑buffer为空的异常处理!!
+    else throw "Bad/Unknown command";
 }
